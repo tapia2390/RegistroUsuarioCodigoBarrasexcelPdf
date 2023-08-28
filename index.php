@@ -39,10 +39,10 @@ if ($validar == null || $validar = '') {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="../includes/validar.php" method="POST">
+                    <form action="../includes/validar.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="imagen" class="form-label">Foto *</label>
-                            <input type="file" type="file" id="selImg" name="selImg" class="form-control" onclick="actualizarImg()">
+                            <input type="file" id="imagen" name="imagen" class="form-control" accept="image/*">
 
                         </div>
 
@@ -118,7 +118,7 @@ if ($validar == null || $validar = '') {
                         <br>
                         <div class="form-group">
                             <label for="recibo" class="form-label">Recibo de pago *</label>
-                            <input type="file" type="file" id="recibo" name="recibo" class="form-control" onclick="actualizarRecibo()">
+                            <input type="file" accept=".pdf" id="pdf" name="pdf" class="form-control">
 
                         </div>
 
