@@ -39,7 +39,7 @@ if ($validar == null || $validar = '') {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="../includes/validarUser.php" method="POST">
+                    <form action="../includes/validar.php" method="POST">
 
 
                         <div class="form-group">

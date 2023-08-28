@@ -26,8 +26,7 @@ if ($validar == null || $validar = '') {
 
   <link rel="stylesheet" href="../css/es.css">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<script src="../js/JsBarcode.all.min.js"></script>
+  <script src="../js/JsBarcode.all.min.js"></script>
 
   <script src="../js/jquery.min.js"></script>
 
@@ -48,9 +47,10 @@ if ($validar == null || $validar = '') {
     
 
     <div>
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create">
-        <span class="glyphicon glyphicon-plus"></span> Nuevo usuario <i class="fa fa-plus"></i> </a></button>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create">
+				<span class="glyphicon glyphicon-plus"></span> Nuevo usuario   <i class="fa fa-plus"></i> </a></button>
 
+     
       <a class="btn btn-warning" href="../includes/_sesion/cerrarSesion.php">Log Out
         <i class="fa fa-power-off" aria-hidden="true"></i>
       </a>
@@ -96,14 +96,13 @@ if ($validar == null || $validar = '') {
         <tr>
 
           <th>Foto</th>
-          <th>Estado</th>
+    
           <th>Documento</th>
           <th>Nombres</th>
           <th>Apellidos</th>
           <th>Correo</th>
-          <th>Celular</th>
           <th>Empresa</th>
-          <th>Recibo de pago</th>
+          <th>Código de barras</th>
           <th>Acciones</th>
 
         </tr>
@@ -123,17 +122,19 @@ $arrayCodigos=array();
           $arrayCodigos[]=(string)$fila['telefono']; 
         ?>
           <tr>
+          <td><img src="../imgs/<?php echo $fila['imagen']; ?>" onerror=this.src="../imgs/noimage.png" width="50" heigth="70"></td>
+
+            
+            <td><?php echo "123456"; ?></td>
             <td><?php echo $fila['nombre']; ?></td>
+            <td><?php echo "perez"; ?></td>
             <td><?php echo $fila['correo']; ?></td>
-            <td><?php echo $fila['password']; ?></td>
-            <td><?php echo $fila['telefono']; ?></td>
-            <td><?php echo $fila['fecha']; ?></td>
+            <td><?php echo "mision Riqueza"; ?></td>
             <td>
 						<svg id='<?php echo "barcode".$fila['telefono']; ?>'>
 						</td>
             
-            <td><img src="../imgs/<?php echo $fila['imagen']; ?>" onerror=this.src="../imgs/noimage.png" width="50" heigth="70"></td>
-
+           
             <td>
 
 
