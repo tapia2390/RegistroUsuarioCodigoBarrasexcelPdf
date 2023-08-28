@@ -26,6 +26,8 @@ if ($validar == null || $validar = '') {
 
   <link rel="stylesheet" href="../css/es.css">
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="../js/JsBarcode.all.min.js"></script>
 
   <script src="../js/jquery.min.js"></script>
 
@@ -43,12 +45,7 @@ if ($validar == null || $validar = '') {
 
     <h1>Lista de usuarios</h1>
     <br>
-    <!-- <p> Mostrar cantidad de <select name="sel" id="value"> 
-        <option value="1">1 Registro</option>
-        <option value="2">2 Registros</option>
-        <option value="3">3 Registros</option>
-    </select>
-    <br>-->
+    
 
     <div>
       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create">
@@ -120,8 +117,10 @@ if ($validar == null || $validar = '') {
 user.fecha, user.imagen, permisos.rol FROM user
 LEFT JOIN permisos ON user.rol = permisos.id");
 
-        while ($fila = mysqli_fetch_assoc($SQL)) :
+$arrayCodigos=array();
 
+        while ($fila = mysqli_fetch_assoc($SQL)) :
+          $arrayCodigos[]=(string)$fila['telefono']; 
         ?>
           <tr>
             <td><?php echo $fila['nombre']; ?></td>
@@ -129,9 +128,10 @@ LEFT JOIN permisos ON user.rol = permisos.id");
             <td><?php echo $fila['password']; ?></td>
             <td><?php echo $fila['telefono']; ?></td>
             <td><?php echo $fila['fecha']; ?></td>
-            <td><?php echo $fila['rol']; ?></td>
-            <td><?php echo $fila['rol']; ?></td>
-            <td><?php echo $fila['rol']; ?></td>
+            <td>
+						<svg id='<?php echo "barcode".$fila['telefono']; ?>'>
+						</td>
+            
             <td><img src="../imgs/<?php echo $fila['imagen']; ?>" onerror=this.src="../imgs/noimage.png" width="50" heigth="70"></td>
 
             <td>
@@ -199,5 +199,34 @@ LEFT JOIN permisos ON user.rol = permisos.id");
 
 
     <?php include('../index.php'); ?>
+
+
+
+    <script type="text/javascript">
+
+function arrayjsonbarcode(j){
+  json=JSON.parse(j);
+  arr=[];
+  for (var x in json) {
+    arr.push(json[x]);
+  }
+  return arr;
+}
+
+jsonvalor='<?php echo json_encode($arrayCodigos) ?>';
+valores=arrayjsonbarcode(jsonvalor);
+
+for (var i = 0; i < valores.length; i++) {
+
+  JsBarcode("#barcode" + valores[i], valores[i].toString(), {
+    format: "codabar",
+    lineColor: "#000",
+    width: 2,
+    height: 30,
+    displayValue: true
+  });
+}
+
+</script>
 
 </html>
