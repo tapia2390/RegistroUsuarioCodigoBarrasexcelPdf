@@ -45,7 +45,7 @@ if ($validar == null || $validar = '') {
 
     <h1>Lista de usuarios</h1>
     <br>
-   
+
 
     <div>
       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create">
@@ -63,7 +63,7 @@ if ($validar == null || $validar = '') {
 
 
 
- 
+
     <?php
     $conexion = mysqli_connect("localhost", "root", "", "r_user");
     $where = "";
@@ -84,7 +84,7 @@ if ($validar == null || $validar = '') {
 
 
     </form>
- 
+
 
     <br>
 
@@ -109,28 +109,39 @@ if ($validar == null || $validar = '') {
 
         $conexion = mysqli_connect("localhost", "root", "", "r_user");
         $SQL = mysqli_query($conexion, "SELECT user.id, user.nombre, user.correo, user.password, user.telefono,
-user.fecha, user.imagen, permisos.rol FROM user 
+user.fecha, user.imagen, permisos.rol,user.documento FROM user 
 LEFT JOIN permisos ON user.rol = permisos.id LIMIT 18446744073709551615 OFFSET 1 ");
 
-       
 
-          $arrayCodigos=array();
+
+        $arrayCodigos = array();
 
         while ($fila = mysqli_fetch_assoc($SQL)) :
-          $arrayCodigos[]=(string)$fila['telefono']; 
+          //$arrayCodigos[] = (string)$fila['documento'];
+
+          $datos = $fila['documento'] ."&". $fila['nombre']."&". $fila['nombre'];
         ?>
 
-     
+
           <tr>
             <td><img src="../imgs/<?php echo $fila['imagen']; ?>" onerror=this.src="../imgs/noimage.png" width="50" heigth="70"></td>
             <td><?php echo $fila['nombre']; ?></td>
             <td><?php echo $fila['correo']; ?></td>
             <td><?php echo $fila['telefono']; ?></td>
-        
+
 
             <td>
-						<svg id='<?php echo "barcode".$fila['telefono']; ?>'>
-						</td>
+              <svg id="barcode"></svg>
+              <script>
+                JsBarcode("#barcode", "<?php echo $datos; ?>", {
+                  format: "CODE128",              
+                  lineColor: "#000",
+                  width: 2,
+                  height: 30,
+                  displayValue: true
+                });
+              </script>
+            </td>
 
 
             <td>
@@ -195,32 +206,7 @@ LEFT JOIN permisos ON user.rol = permisos.id LIMIT 18446744073709551615 OFFSET 1
     <script src="../js/user.js"></script>
 
 
-    <script type="text/javascript">
 
-function arrayjsonbarcode(j){
-  json=JSON.parse(j);
-  arr=[];
-  for (var x in json) {
-    arr.push(json[x]);
-  }
-  return arr;
-}
-
-jsonvalor='<?php echo json_encode($arrayCodigos) ?>';
-valores=arrayjsonbarcode(jsonvalor);
-
-for (var i = 0; i < valores.length; i++) {
-
-  JsBarcode("#barcode" + valores[i], valores[i].toString(), {
-    format: "codabar",
-    lineColor: "#000",
-    width: 2,
-    height: 30,
-    displayValue: true
-  });
-}
-
-</script>
 
 
     <?php include('../index.php'); ?>
