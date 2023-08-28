@@ -68,6 +68,11 @@ if ($validar == null || $validar = '') {
                             <label for="username">Correo:</label><br>
                             <input type="email" name="correo" id="correo" class="form-control" placeholder="">
                         </div>
+
+                        <div class="form-group">
+                            <label for="username">Contraseña:</label><br>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="">
+                        </div>
                         <div class="form-group">
                             <label for="telefono" class="form-label">Celular *</label>
                             <input type="tel" id="telefono" name="telefono" class="form-control" required>
@@ -91,7 +96,18 @@ if ($validar == null || $validar = '') {
                             <label for="password">Empresa:</label><br>
                             <input type="text" name="empresa" id="empresa" class="form-control" required>
                         </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="rol" class="form-label">Rol *</label>
+                            <select id="rol" required>
+                                <option value="1">Administrador</option>
+                                <option value="2">Secretaria</option>
+                                <option value="3">Usuario</option>
 
+                            </select>
+                        </div>
+
+                        <br>
                         <div class="form-group">
                             <label for="rol" class="form-label">Estado *</label>
                             <select id="estado" required>
@@ -100,7 +116,7 @@ if ($validar == null || $validar = '') {
 
                             </select>
                         </div>
-
+                        <br>
                         <div class="form-group">
                             <label for="recibo" class="form-label">Recibo de pago *</label>
                             <input type="file" type="file" id="recibo" name="recibo" class="form-control" onclick="actualizarRecibo()">
