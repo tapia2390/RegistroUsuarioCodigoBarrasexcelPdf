@@ -109,8 +109,8 @@ if ($validar == null || $validar = '') {
 
         $conexion = mysqli_connect("localhost", "root", "", "r_user");
         $SQL = mysqli_query($conexion, "SELECT user.id, user.nombre, user.correo, user.password, user.telefono,
-user.fecha, user.imagen, permisos.rol FROM user
-LEFT JOIN permisos ON user.rol = permisos.id");
+user.fecha, user.imagen, permisos.rol FROM user 
+LEFT JOIN permisos ON user.rol = permisos.id LIMIT 18446744073709551615 OFFSET 1 ");
 
        
 
