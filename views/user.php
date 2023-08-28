@@ -136,8 +136,8 @@ LEFT JOIN permisos ON user.rol = permisos.id");
             <td>
 
 
-              <a class="btn btn-warning" href="editar_user.php?id=<?php echo $fila['id'] ?> ">
-                <i class="fa fa-edit"></i> </a>
+              <!--a class="btn btn-warning" href="editar_user.php?id=<?php echo $fila['id'] ?> ">
+                <i class="fa fa-edit"></i> </a-->
 
 
               <a class="btn btn-danger btn-del" href="eliminar_user.php?id=<?php echo $fila['id'] ?> ">

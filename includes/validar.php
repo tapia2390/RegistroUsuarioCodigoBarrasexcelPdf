@@ -141,7 +141,9 @@ if (
     mysqli_close($conexion);
 } else {
 
-    echo "campos vacios";
+    echo "  <script>alert('campos vacios');  </script>";
+
+    header('Location: ../views/user.php');
 
    
 ?>
