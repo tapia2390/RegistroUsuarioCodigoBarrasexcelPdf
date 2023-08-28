@@ -117,9 +117,9 @@ LEFT JOIN permisos ON user.rol = permisos.id LIMIT 18446744073709551615 OFFSET 1
         $arrayCodigos = array();
 
         while ($fila = mysqli_fetch_assoc($SQL)) :
-          //$arrayCodigos[] = (string)$fila['documento'];
+          $arrayCodigos[] = (string)$fila['documento'];
 
-          $datos = $fila['documento'] ."&". $fila['nombre']."&". $fila['nombre'];
+      
         ?>
 
 
@@ -131,16 +131,7 @@ LEFT JOIN permisos ON user.rol = permisos.id LIMIT 18446744073709551615 OFFSET 1
 
 
             <td>
-              <svg id="barcode"></svg>
-              <script>
-                JsBarcode("#barcode", "<?php echo $datos; ?>", {
-                  format: "CODE128",              
-                  lineColor: "#000",
-                  width: 2,
-                  height: 30,
-                  displayValue: true
-                });
-              </script>
+              <svg id='<?php echo "barcode" . $fila['documento']; ?>'>
             </td>
 
 
@@ -206,7 +197,31 @@ LEFT JOIN permisos ON user.rol = permisos.id LIMIT 18446744073709551615 OFFSET 1
     <script src="../js/user.js"></script>
 
 
+    <script type="text/javascript">
+      
+      function arrayjsonbarcode(j) {
+        json = JSON.parse(j);
+        arr = [];
+        for (var x in json) {
+          arr.push(json[x]);
+        }
+        return arr;
+      }
 
+      jsonvalor = '<?php echo json_encode($arrayCodigos) ?>';
+      valores = arrayjsonbarcode(jsonvalor);
+
+      for (var i = 0; i < valores.length; i++) {
+
+        JsBarcode("#barcode" + valores[i], valores[i].toString(), {
+          format: "codabar",
+          lineColor: "#000",
+          width: 2,
+          height: 30,
+          displayValue: true
+        });
+      }
+    </script>
 
 
     <?php include('../index.php'); ?>
