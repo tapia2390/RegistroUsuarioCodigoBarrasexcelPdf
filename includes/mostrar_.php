@@ -2,9 +2,11 @@
 include '_db.php';
 
 
+
 $result= array();
 $result['datos'] =array();
-$query ="SELECT *FROM user";
+$codigo= $_REQUEST['codigo'];
+$query ="SELECT *FROM user where documento=".$codigo;
 $responce = mysqli_query($conexion,$query);
 
 while($row = mysqli_fetch_array($responce))
