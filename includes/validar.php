@@ -1,10 +1,10 @@
 <?php
 
-$conexion=mysqli_connect("localhost","root","","r_user"); 
+$conexion = mysqli_connect("localhost", "root", "", "r_user");
 
 if (
     isset($_POST["documento"]) && !empty($_POST["documento"]) &&
-    isset($_POST["nombre"]) && !empty($_POST["nombre"]) &&
+    isset($_POST["nombres"]) && !empty($_POST["nombres"]) &&
     isset($_POST["apellidos"]) && !empty($_POST["apellidos"]) &&
     isset($_POST["correo"]) && !empty($_POST["correo"]) &&
     isset($_POST["telefono"]) && !empty($_POST["telefono"]) &&
@@ -18,7 +18,7 @@ if (
     isset($_POST["recibo"]) && !empty($_POST["recibo"])
 ) {
 
-    $nombre = $_POST["nombre"];
+    $nombre = $_POST["nombres"];
     $correo = $_POST["correo"];
     $telefono = $_POST["telefono"];
     $password = $_POST["password"];
@@ -34,12 +34,31 @@ if (
 
 
     if (isset($_POST["selImg"]) && !empty($_POST["selImg"])) {
-		$imagen = $_POST["selImg"];
-	} else {
-		$imagen = '';
-	}
+        $imagen = $_POST["selImg"];
+    } else {
+        $imagen = '';
+    }
 
-    $sql = "INSERT INTO user (nombre, correo, telefono, password, rol, imagen, documento, apellidos, ciudad, departamento, direccion, empresa, estado, url_recibo)
+
+
+    if (isset($_POST["recibo"]) && !empty($_POST["recibo"])) {
+        $recibo = $_POST["recibo"];
+    } else {
+        $recibo = '';
+    }
+
+    $sql = "INSERT INTO user (id,nombre, correo, telefono, password, rol, imagen, documento, apellidos, ciudad, departamento, direccion, empresa, estado, recibo)
+    VALUES (null, '$nombre', '$correo', '$telefono', '$password', $rol, '$imagen', '$documento', '$apellidos', '$ciudad', '$departamento', '$direccion', '$empresa', '$estado', '$recibo')";
+echo $sql;
+
+if ($conexion->query($sql) === TRUE) {
+    header('Location: ../views/user.php');
+} else {
+    echo "No se pudo realizar la accion";
+}
+
+
+    /*  $sql = "INSERT INTO user (nombre, correo, telefono, password, rol, imagen, documento, apellidos, ciudad, departamento, direccion, empresa, estado, url_recibo)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     if ($statement = mysqli_prepare($conexion, $sql)) {
@@ -53,9 +72,13 @@ if (
             echo "No se pudo realizar la accion";
         }
         mysqli_stmt_close($statement);
-    }
+    }*/
 
     mysqli_close($conexion);
 } else {
+
+    echo "que pasas";
 ?>
+
+
 <?php  } ?>

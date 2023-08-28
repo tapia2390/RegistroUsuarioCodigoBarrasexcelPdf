@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-08-2022 a las 15:16:38
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 8.0.8
+-- Tiempo de generación: 28-08-2023 a las 16:58:42
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `permisos` (
   `id` int(11) NOT NULL,
   `rol` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `permisos`
@@ -38,7 +38,8 @@ CREATE TABLE `permisos` (
 
 INSERT INTO `permisos` (`id`, `rol`) VALUES
 (1, 'Administrador'),
-(2, 'Lector');
+(2, 'Lector'),
+(3, 'usuarios');
 
 -- --------------------------------------------------------
 
@@ -54,16 +55,25 @@ CREATE TABLE `user` (
   `password` varchar(50) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `rol` int(11) NOT NULL,
-  `imagen` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `imagen` varchar(250) NOT NULL,
+  `documento` text NOT NULL,
+  `apellidos` text NOT NULL,
+  `ciudad` text NOT NULL,
+  `departamento` text NOT NULL,
+  `direccion` text NOT NULL,
+  `empresa` text NOT NULL,
+  `estado` text NOT NULL,
+  `recibo` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id`, `nombre`, `correo`, `telefono`, `password`, `fecha`, `rol`, `imagen`) VALUES
-(59, 'Emanuel', 'mugarte5672@gmail.com', '9911165670', '12345', '2022-07-31 19:33:14', 1, 'user1.png'),
-(62, 'Maria', 'Maria@Outlook.es', '9911165670', '12345', '2022-07-31 23:05:40', 2, 'bg.jpg');
+INSERT INTO `user` (`id`, `nombre`, `correo`, `telefono`, `password`, `fecha`, `rol`, `imagen`, `documento`, `apellidos`, `ciudad`, `departamento`, `direccion`, `empresa`, `estado`, `recibo`) VALUES
+(59, 'admin', 'admin@gmail.com', '9911165670', '12345', '2023-08-28 14:00:40', 1, 'user1.png', '1234', 'perez', 'Manizales', 'caldas', 'cll 23', 'Mision riqueza', 'Inactivo', 'bg.jpg'),
+(62, 'secretaria', 'ia@gmail.com', '9911165670', '12345', '2023-08-28 14:00:37', 2, 'bg.jpg', '1235', 'morales', 'Manizales', 'caldas', 'cr 23', 'Farmacias dos', 'Activo', 'bg.jpg'),
+(70, 'dsfds', 'demo@gmail.com', '3104287654', '1234', '2023-08-28 14:55:45', 2, 'user12.png', '23123', 'rebengers', 'manizales', 'caldas', 'cr 23', 'Mision r', 'activo', 'prueba.pdf');
 
 --
 -- Índices para tablas volcadas
@@ -90,13 +100,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- Restricciones para tablas volcadas
