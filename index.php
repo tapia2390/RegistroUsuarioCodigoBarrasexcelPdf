@@ -106,71 +106,7 @@ if( $validar == null || $validar = ''){
 
                         </form>
 
-<!--<script src="./package/dist/sweetalert2.all.js"></script>
-<script src="./package/dist/sweetalert2.all.min.js"></script>
 
-<script type="text/javascript">
-	$(function(){
-		$('#register').click(function(e){
-
-			var valid = this.form.checkValidity();
-
-			if(valid){
-
-
-			var nombre 	= $('#nombre').val();
-			var correo 		= $('#correo').val();
-			var telefono = $('#telefono').val();
-			var password 	= $('#password').val();
-			var rol	= $('#rol').val();
-            var imagen	= $('#imagen').val();
-			
-
-				e.preventDefault();	
-
-				$.ajax({
-					type: 'POST',
-					url: '../includes/validar.php',
-					data: {nombre: nombre,correo: correo, telefono: telefono,
-                    password: password, rol: rol, imagen:imagen},
-					success: function(data){
-					Swal.fire({
-								'title': '¡Mensaje!',
-								'text': data,
-                                'icon': 'success',
-                                'showConfirmButton': 'false',
-                                'timer': '1500'
-								}).then(function() {
-                window.location = "user.php";
-            });
-							
-					} ,
-                    
-					error: function(data){
-						Swal.fire({
-								'title': 'Error',
-								'text': data,
-								'icon': 'error'
-								})
-					}
-				});
-
-				
-			}else{
-				
-			}
-
-			
-
-
-
-		});		
-
-		
-	});
-    
-	
-</script>-->
 </body>
 </html>
 
