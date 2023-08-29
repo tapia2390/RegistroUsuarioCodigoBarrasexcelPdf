@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         binding.urlpdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /] Uri uri = Uri.parse(reciboReplace);
+                Uri uri = Uri.parse(reciboReplace);
                 Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                 startActivity(intent);
             }
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void ListarDatos(String codigo){
 
-        StringRequest request =new StringRequest(Request.Method.POST, "http://192.168.0.2/registro/includes/mostrar_.php?codigo="+codigo,
+        StringRequest request =new StringRequest(Request.Method.POST, "http://misionriqueza.com.co/registroUsuarios/includes/mostrar_.php?codigo="+codigo,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -120,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
                                     usuarios =new Usuarios(id,nombre,correo,telefono,password,fecha,rol,imagen,documento,apellidos,ciudad,departamento,direccion,empresa,estado,recibo);
                                     usuariosArrayList.add(usuarios);
 
-                                    String urlimgreplace= imagen.replace("../", "http://192.168.0.2/registro/");
-                                     reciboReplace= recibo.replace("../", "http://192.168.0.2/");
+                                    String urlimgreplace= imagen.replace("../", "http://misionriqueza.com.co/registroUsuarios/");
+                                     reciboReplace= recibo.replace("../", "http://misionriqueza.com.co/registroUsuarios/");
 
                                     Picasso.with(getApplicationContext()).load(urlimgreplace).placeholder(R.drawable.user12)// Place holder image from drawable folder
                                             .error(R.drawable.user12).resize(110, 110).centerCrop()
